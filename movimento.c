@@ -11,7 +11,7 @@
 
 const double FRIC = 0.1;
 const double DT = 0.005;
-const double TF = 53.0;
+const double TF = 23.0;
 
 const int CHECKPOINT = 10;
 
@@ -169,7 +169,7 @@ void movement(PARTICULA particulas[], CONSTANTES constantes){
 
         //ARQUIVO UNICO
 
-        if(iteracao >= 10000){
+        if(iteracao >= 100){
             fprintf(arqAnim, "%d\n\n", constantes.particulaMax);
 
             for(i = 0; i < constantes.particulaMax; i++){
@@ -185,7 +185,7 @@ void movement(PARTICULA particulas[], CONSTANTES constantes){
             }
 
             fprintf(arqAnim, "\n");
-            iteracao = 9990;
+            iteracao = 90;
         }
         else{
             iteracao++;

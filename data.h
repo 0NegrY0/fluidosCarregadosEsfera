@@ -15,6 +15,7 @@ typedef struct str_particula{
     VECTOR forcas;
     VECTOR vel;
     VECTOR gaussian;
+    char Elemento[2];
     double raio;
     int carga;
     int id;

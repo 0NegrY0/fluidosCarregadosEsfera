@@ -26,7 +26,7 @@ int main(){
     //DEFININDO OS VALORES INICIAIS PARA AS PARTICULAS
     for(i = 0; i < PARTICULA_MAX; i++){
         particulas[i].raio = 0.05;
-        particulas[i].carga = 0;
+        //particulas[i].carga = 0;
         particulas[i].posicao.x = 0;
         particulas[i].posicao.y = 0;
         particulas[i].posicao.z = 0;
@@ -38,7 +38,20 @@ int main(){
         particulas[i].forcas.z = 0;
         particulas[i].id = i;
 
+        if(i < PARTICULA_MAX/2){
+                    particulas[i].carga = +1;
+                    particulas[i].Elemento[0] = 'N';
+                    particulas[i].Elemento[1] = 'a';
+                }
+
+                else{
+                    particulas[i].carga = -1;
+                    particulas[i].Elemento[0] = 'C';
+                    particulas[i].Elemento[1] = 'l';
+                }
     }
+
+
 
     //DEFININDO AS CONSTANTES USANDAS NO PROGRAMA
     constantes.particulaMax = PARTICULA_MAX;
