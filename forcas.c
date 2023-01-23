@@ -72,7 +72,7 @@ void calculaForcas(PARTICULA particulas[], CONSTANTES constantes){
 
 
             //ELETROESTATICA=======================================================================
-            pfel = cadm * ((double)particulas[i].carga * (double)particulas[j].carga) / pow(dist, 3);       // parametro da força eletrostática
+            pfel = cadm * (particulas[i].carga * particulas[j].carga) / pow(dist, 3);       // parametro da força eletrostática
 
             f.x += pfel * d.x;
             f.y += pfel * d.y;
