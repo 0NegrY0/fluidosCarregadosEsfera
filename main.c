@@ -10,9 +10,18 @@
 #include "data.h"
 
 //PARTICULAS
-const int PARTICULA_MAX = 100;
-const double RAIO_ESFERA = 15.0;
-const double RAIO_PARTICULA = 2.0;
+const int PARTICULA_MAX = 101;              //ESFERA CENTRAL
+const double RAIO_PARTICULA = 0.5;
+const double RAIO_ESFERA = 16.0 * RAIO_PARTICULA;
+const double COEF_FRIC = 0.1;
+const double LAMB_B =  14.0 * RAIO_PARTICULA;
+const double TIME = 0.005;
+const double END_TIME = 30.0;
+
+
+
+
+
 
 int main(){
 
@@ -38,17 +47,22 @@ int main(){
         particulas[i].forcas.z = 0;
         particulas[i].id = i;
 
-        if(i < PARTICULA_MAX/2){
-                    particulas[i].carga = +1;
-                    particulas[i].Elemento[0] = 'N';
-                    particulas[i].Elemento[1] = 'a';
-                }
+        if (i = 0){
+            particulas[i].carga = 0;                //MUDAR
+            particulas[i].Elemento[0] = 'C';
+            particulas[i].Elemento[1] = 'u';
+        }
+        else if(i < PARTICULA_MAX/2){
+            particulas[i].carga = +1;
+            particulas[i].Elemento[0] = 'N';
+            particulas[i].Elemento[1] = 'a';
+        }
 
-                else{
-                    particulas[i].carga = -1;
-                    particulas[i].Elemento[0] = 'C';
-                    particulas[i].Elemento[1] = 'l';
-                }
+        else{
+            particulas[i].carga = -1;
+            particulas[i].Elemento[0] = 'C';
+            particulas[i].Elemento[1] = 'l';
+        }
     }
 
 
@@ -57,6 +71,10 @@ int main(){
     constantes.particulaMax = PARTICULA_MAX;
     constantes.raioEsfera = RAIO_ESFERA;
     constantes.raioMaximo = RAIO_PARTICULA;
+    constantes.coefFric = COEF_FRIC;
+    constantes.endTime = END_TIME;
+    constantes.lambB = LAMB_B;
+    constantes.time = TIME;
     
     
     //CRIA PARTICULAS
@@ -64,6 +82,7 @@ int main(){
 
     colocaParticula(particulas, constantes);
 
+    
 
     imprimeArquivo(particulas, PARTICULA_MAX);
 

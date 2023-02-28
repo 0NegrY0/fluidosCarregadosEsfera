@@ -9,14 +9,15 @@
 #include <stdio.h>
 #include <string.h>
 
-const double FRIC = 0.1;
-const double DT = 0.005;
-const double TF = 23.0;
 
 const int CHECKPOINT = 10;
 
 
 void movement(PARTICULA particulas[], CONSTANTES constantes){
+
+    double FRIC = constantes.coefFric;
+    double DT = constantes.time;
+    double TF = constantes.endTime;
 
     double Con, Co, Cone, Ctwo;
     double desv_r;
@@ -55,7 +56,7 @@ void movement(PARTICULA particulas[], CONSTANTES constantes){
     Cvv = (DT / Con / desv_v / desv_r) * (1 - Co) * (1 - Co);
     CvvTwo = sqrt(1 - pow(Cvv, 2));
 
-    raioRelativo = constantes.raioEsfera - constantes.raioMaximo/2.0;
+    raioRelativo = constantes.raioEsfera - constantes.raioMaximo;
 
 
     for(double t = 0; t <= TF; t += DT){
@@ -97,10 +98,12 @@ void movement(PARTICULA particulas[], CONSTANTES constantes){
                 particulas[i].vel.y *= -1.0;
                 particulas[i].vel.z *= -1.0;
 
-                //retornando a posicao antiga
+                //retornando a posicao antiga                                           SE A FORCA EH MUITO GRANDE A PARTICULA SEMPRE ESCAPA DA CAIXA E É RETORNADA A POSICAO ANTIGA
                 particulas[i].posicao.x = old.x;
                 particulas[i].posicao.y = old.y;
                 particulas[i].posicao.z = old.z;
+
+                //calculaForcas(particulas, constantes);
             }
         }
 
@@ -108,7 +111,7 @@ void movement(PARTICULA particulas[], CONSTANTES constantes){
         calculaForcas(particulas, constantes);     
         
         //LOOP VELOCIDADE
-        for(i = 0; i < constantes.particulaMax; ++i){
+        for(i = 0; i < constantes.particulaMax; ++i){        
             particulas[i].vel.x = Co * particulas[i].vel.x + (Cone - Ctwo) * DT * particulas[i].forcas.x + Ctwo * DT * particulas[i].forcas.x + desv_v * (Cvv * particulas[i].gaussian.x + CvvTwo * gausran());                 //era Fold no lugar do primeiro lennard
             particulas[i].vel.y = Co * particulas[i].vel.y + (Cone - Ctwo) * DT * particulas[i].forcas.y + Ctwo * DT * particulas[i].forcas.y + desv_v * (Cvv * particulas[i].gaussian.y + CvvTwo * gausran());
             particulas[i].vel.z = Co * particulas[i].vel.z + (Cone - Ctwo) * DT * particulas[i].forcas.z + Ctwo * DT * particulas[i].forcas.z + desv_v * (Cvv * particulas[i].gaussian.z + CvvTwo * gausran());

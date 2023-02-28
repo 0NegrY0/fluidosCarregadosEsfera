@@ -30,9 +30,13 @@ void colocaParticula(PARTICULA particulas[], CONSTANTES constantes){
     VECTOR testePos;            //usada no teste com a esfera
     VECTOR distTestPos;         //usada no teste com as outras particulas
 
-    particulas[0].posicao.x = numeroAleatorio(-raioRelativo/2.0, raioRelativo/2.0);
-    particulas[0].posicao.y = numeroAleatorio(-raioRelativo/2.0, raioRelativo/2.0);
-    particulas[0].posicao.z = numeroAleatorio(-raioRelativo/2.0, raioRelativo/2.0);
+    //particulas[0].posicao.x = numeroAleatorio(-raioRelativo/2.0, raioRelativo/2.0);
+    //particulas[0].posicao.y = numeroAleatorio(-raioRelativo/2.0, raioRelativo/2.0);
+    //particulas[0].posicao.z = numeroAleatorio(-raioRelativo/2.0, raioRelativo/2.0);
+
+    particulas[0].posicao.x = 0.0;
+    particulas[0].posicao.y = 0.0;
+    particulas[0].posicao.z = 0.0;
 
     while(i < constantes.particulaMax){
         do{
@@ -112,4 +116,14 @@ double gausran(){
 
 double distCalc(double x, double y, double z){
     return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
+}
+
+
+
+VECTOR zeraVector(VECTOR forca){
+    forca.x = 0;
+    forca.y = 0;
+    forca.z = 0;
+
+    return forca;
 }
