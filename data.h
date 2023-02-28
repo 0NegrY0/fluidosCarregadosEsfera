@@ -25,6 +25,10 @@ typedef struct str_constantes{
     double raioEsfera;
     int particulaMax;
     double raioMaximo;
+    double coefFric;
+    double lambB;
+    double time;
+    double endTime;
 }CONSTANTES;
 
 double numeroAleatorio(double min, double max);

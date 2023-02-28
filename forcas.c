@@ -25,7 +25,7 @@ void calculaForcas(PARTICULA particulas[], CONSTANTES constantes){
 
     //ELETROESTATICA=====================================================================
     double pfel;
-    double cadm =  (10.0*constantes.raioMaximo) / constantes.raioMaximo;              //constante força eletroestatica - adimensionalizadora
+    double cadm =  constantes.lambB / (2.0 * constantes.raioMaximo);              //constante força eletroestatica - adimensionalizadora
     //===================================================================================
 
     //double Lx = 2 * constantes.raioEsfera;
@@ -34,9 +34,7 @@ void calculaForcas(PARTICULA particulas[], CONSTANTES constantes){
     
     //zera forcas
     for(i = 0; i< constantes.particulaMax; i++){
-        particulas[i].forcas.x = 0.0;
-        particulas[i].forcas.y = 0.0;
-        particulas[i].forcas.z = 0.0;
+        particulas[i].forcas = zeraVector(particulas[i].forcas);
     }
 
 
@@ -79,7 +77,7 @@ void calculaForcas(PARTICULA particulas[], CONSTANTES constantes){
             f.z += pfel * d.z;
 
 
-            //SOMA DAS FORCAS======================================================================
+            //SOMA DAS FORCAS======================================================================         PROBLEMA
 
             particulas[i].forcas.x += f.x;            
             particulas[i].forcas.y += f.y;
@@ -91,15 +89,17 @@ void calculaForcas(PARTICULA particulas[], CONSTANTES constantes){
             particulas[j].forcas.z += -f.z; 
 
 
+            //particulas[i].forcas.x += 0.1;            
+            //particulas[i].forcas.y += -0.2;
+            //particulas[i].forcas.z += 0.3;
+            
+            
+            //particulas[j].forcas.x += 0.1;       
+            //particulas[j].forcas.y += -0.5;
+            //particulas[j].forcas.z += 0.3; 
+
+
             f = zeraVector(f);
         }
     }
-}
-
-VECTOR zeraVector(VECTOR forca){
-    forca.x = 0;
-    forca.y = 0;
-    forca.z = 0;
-
-    return forca;
 }
